@@ -1,9 +1,9 @@
-import {ShoppingCartV2} from "./ShoppingCartV2";
+import {ShoppingCart} from "./ShoppingCart";
 import {Item} from "./Item";
 
 export class ImagineThisIsAClientInADifferentRepository {
   FormattedPrice = () => {
-    const cart = new ShoppingCartV2();
+    const cart = new ShoppingCart();
     cart.add(new Item(10, 1));
     return `Total price is ${cart.calculateTotalPrice()} euro`;
   };
