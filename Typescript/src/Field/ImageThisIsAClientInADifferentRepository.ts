@@ -1,9 +1,10 @@
-import { ShoppingCart } from "./ShoppingCart";
+import {ShoppingCartV2} from "./ShoppingCartV2";
+import {Item} from "./Item";
 
 export class ImagineThisIsAClientInADifferentRepository {
   FormattedPrice = () => {
-    var cart = new ShoppingCart();
-    cart.add(10);
+    const cart = new ShoppingCartV2();
+    cart.add(new Item(10, 1));
     return `Total price is ${cart.calculateTotalPrice()} euro`;
   };
 }
