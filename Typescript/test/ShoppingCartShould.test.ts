@@ -1,4 +1,5 @@
 import { ShoppingCart } from "../src/Field/ShoppingCart";
+import {Item} from "../src/Field/Item";
 
 describe("shopping cart", () => {
   let cart: ShoppingCart;
@@ -26,5 +27,15 @@ describe("shopping cart", () => {
     cart.add(10);
 
     expect(cart.hasDiscount()).toBeFalsy();
+  });
+
+  // Multiple items tests
+  it('should add multiple price', () => {
+    cart.addMultipleItems([
+        new Item(100, 2),
+        new Item(100, 1)
+    ]);
+
+    expect(cart.calculateTotalPriceOfMultipleItems()).toBe(300);
   });
 });
