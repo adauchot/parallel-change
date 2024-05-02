@@ -30,12 +30,39 @@ describe("shopping cart", () => {
   });
 
   // Multiple items tests
-  it('should add multiple price', () => {
+  it('calculates the final price', () => {
     cart.addMultipleItems([
         new Item(100, 2),
         new Item(100, 1)
     ]);
 
     expect(cart.calculateTotalPriceOfMultipleItems()).toBe(300);
+  });
+
+  it("knows the number of items", () => {
+    cart.addMultipleItems([
+      new Item(100, 2),
+      new Item(100, 1)
+    ]);
+
+    expect(cart.numberOfProductsOfMultipleItems()).toBe(3);
+  });
+
+  it("may offer discounts when there is at least one expensive product", () => {
+    cart.addMultipleItems([
+      new Item(50, 2),
+      new Item(120, 1)
+    ]);
+
+    expect(cart.hasDiscountWithMultipleItems()).toBeTruthy();
+  });
+
+  it("does not offer discount for cheap products", () => {
+    cart.addMultipleItems([
+      new Item(50, 2),
+      new Item(80, 1)
+    ]);
+
+    expect(cart.hasDiscountWithMultipleItems()).toBeFalsy();
   });
 });

@@ -12,6 +12,7 @@ export class ShoppingCart {
 
   hasDiscount = () => this.price > 100;
 
+  // TODO: Remember to provide one commit by phase (expand, migrate, contract)
   // Multiple items handling
   addMultipleItems = (items: Item[]) => {
     items.forEach(item => {
@@ -22,14 +23,21 @@ export class ShoppingCart {
   calculateTotalPriceOfMultipleItems = () => {
     return this.items
         .map(item => item.price * item.count)
-        .reduce((previousAccumulation, itemTotalPrice) => previousAccumulation + itemTotalPrice, 0);
+        .reduce((acc, itemTotalPrice) => acc + itemTotalPrice, 0);
   };
 
   numberOfProductsOfMultipleItems = () => {
-
+    return this.items
+        .map(item => item.count)
+        .reduce((acc, itemCount) => acc + itemCount, 0);
   };
 
   hasDiscountWithMultipleItems = () => {
+    const itemPrices = this.items.map(item => item.price);
+    const maxPrice = itemPrices.reduce((maxPrice, currentPrice) => {
+      return currentPrice > maxPrice ? currentPrice : maxPrice;
+    }, 0);
 
+    return maxPrice > 100;
   };
 }
