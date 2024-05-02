@@ -14,10 +14,8 @@ export class ShoppingCart {
 
   // TODO: Remember to provide one commit by phase (expand, migrate, contract)
   // Multiple items handling
-  addMultipleItems = (items: Item[]) => {
-    items.forEach(item => {
-      this.items.push(item);
-    });
+  addItem = (...items: Item[]) => {
+    this.items.push(...items);
   }
 
   calculateTotalPriceOfMultipleItems = () => {
